@@ -5,6 +5,9 @@ import java.sql.*;
 
 
 public class User {
+	
+	//This is just a test//
+	
 	Connection cn;
 
 	ResultSet currentResults;
