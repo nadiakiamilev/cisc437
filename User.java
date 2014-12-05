@@ -18,11 +18,6 @@ public class User {
 		currentItem = null;
 	}
 
-	public void helloWorld() {
-		System.out.println("hello world!");
-	}
-
-
 	// Method to execute administration operation
 	public void adminExecuteOperation(int option, String dbname, String userID, String password) {
 		System.out.println("We are going to execute this operation: " );
@@ -59,7 +54,28 @@ public class User {
 
 					break;
 				case 2: //delete
-					System.out.println("here case 2");
+					System.out.println("Please Enter the First Name of the Person You Want to Delete: ");
+					BufferedReader firstName = new BufferedReader(new InputStreamReader(System.in));
+					String first_Name = firstName.readLine();
+					System.out.println(first_Name);
+
+					System.out.println("Please Enter the Last Name of the Person You Want to Delete: ");
+					BufferedReader lastName = new BufferedReader(new InputStreamReader(System.in));
+					String last_Name = lastName.readLine();
+					System.out.println(last_Name);
+
+					String sqlDelStatement = "DELETE FROM person "
+						+ "WHERE " + "first_name=" + "'" + first_Name + "'"
+						+ " last_name=" + "'" + last_Name + "';";
+
+					try {
+						Statement st2 = cn.createStatement();
+						st2.executeUpdate(sqlDelStatement);
+						System.out.println("You have successfully deleted " + first_Name + " " + last_Name + " from the database.");
+					}
+					catch (SQLException e) {
+						System.out.println("That person does not exist. Query failed: " + e );
+					}
 					break;
 				case 3: 
 					System.out.println("You opted to return to the main menu.");
@@ -77,24 +93,40 @@ public class User {
 		System.out.println("We are going to execute this user query: " + option);
 
 		switch(option) {
-			case 1: option = 1;
+			case 1: 
+				//gets everyone from the database
 				System.out.println("option 1 selected");
+				String sqlQuery1 = "SELECT FROM * person";
+				try {
+					Statement st1 = cn.createStatement();
+					ResultSet persons = st1.executeQuery(sqlQuery1);
+					while (persons.next()) {
+						System.out.println(persons.toString());
+					}
+				}
+				catch (SQLException e) {
+					System.out.println("Query failed: " + e);
+				}
 				//query 1
 				break;
-			case 2: option = 2;
+			case 2: 
 				System.out.println("option 2 selected");
+				String sqlQuery2 = "";
 				//query 2
 				break;
-			case 3: option = 3;
+			case 3: 
 				System.out.println("option 3 selected");
+				String sqlQuery3 = "";
 				//query 3
 				break;
-			case 4: option = 4;
+			case 4: 
 				System.out.println("option 4 selected");
+				String sqlQuery4 = "";
 				//query 4
 				break;
-			case 5: option = 5;
+			case 5: 
 				System.out.println("option 5 selected");
+				String sqlQuery5 = "";
 				//query 5
 				break;
 		}
@@ -105,6 +137,12 @@ public class User {
 		String dbname = "bgala";
 		String userID = "bgala";
 		String password = "4659";
+
+		String sqlDelStatement = "DELETE FROM person "
+			+ "WHERE " + "first_name=" + "'" + "first_Name" + "'"
+			+ " last_name=" + "'" + "last_Name" + "'";
+
+		System.out.println(sqlDelStatement);
 
 		// mainMenu();
 		String adminOptionsText = " 1. Update a story title \n " 
