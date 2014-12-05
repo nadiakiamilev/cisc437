@@ -89,18 +89,33 @@ public class User {
 	}
 
 	/*******BHAVIN YOUR CODE GOES HERE!!***********/
-	public void userExecuteOperation(int option, String dbname, String userID, String password) {
-
+	public void userExecuteOperation(String dbname, String userID, String password) {
+		int userChoice=0;
 		boolean exit = false;
 
+		String userOptionsText = "1. Find all people in the database \n"
+		+ "2. Find stories from requested person \n"
+		+ "3. Find stories from a specific country \n"
+		+ "4. Find stories from a range of years \n"
+		+ "5. Return to Main Menu \n ";
+
 		while(!exit){
-			System.out.println("we are at the start of user");
+			System.out.println("hey we are in user status");
+			System.out.println(userOptionsText);
+			System.out.print("select your choice and press enter: ");
+			BufferedReader inUserChoice = new BufferedReader(new InputStreamReader(System.in));
+			try{
+				userChoice = Integer.parseInt(inUserChoice.readLine()); //user's query choice
+				System.out.println("Great choice! " + userChoice);
+			} catch (IOException e){
+				System.out.println("failure to get user choice");
+			}
 
 			try {
 				Class.forName("com.mysql.jdbc.Driver").newInstance();
 				cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/"+dbname, userID, password);
 				
-				switch(option) {
+				switch(userChoice) {
 					case 1: 
 						//gets everyone from the database
 						System.out.println("option 1 selected");
@@ -246,13 +261,13 @@ public class User {
 			}
 
 			else if (typeUser == 2 ) {
-				System.out.println("hey we are in user status");
-				System.out.println(userOptionsText);
-				BufferedReader inUserChoice = new BufferedReader(new InputStreamReader(System.in));
-				int userChoice = Integer.parseInt(inUserChoice.readLine()); //user's query choice
-				System.out.println("Great choice! " + userChoice);
+				// System.out.println("hey we are in user status");
+				// System.out.println(userOptionsText);
+				// BufferedReader inUserChoice = new BufferedReader(new InputStreamReader(System.in));
+				// int userChoice = Integer.parseInt(inUserChoice.readLine()); //user's query choice
+				// System.out.println("Great choice! " + userChoice);
 				User userTmp = new User(dbname, userID, password);
-				userTmp.userExecuteOperation(userChoice, dbname, userID, password);
+				userTmp.userExecuteOperation(dbname, userID, password);
 			}
 
 			else {
