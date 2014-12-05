@@ -142,21 +142,40 @@ public class User {
 		String password = "4659";
 
 		// mainMenu();
-		
+		String adminOptionsText = " 1. Insert a new instance \n " 
+			+ "2. Delete a specific instance \n "
+			+ "3. Return to Main Menu \n ";
+
+		String userOptionsText = " 1. Search for x \n "
+			+ "2. Search for y \n "
+			+ "3. Search for z \n "
+			+ "4. Return to Main Menu \n ";
+
 		System.out.println("Input a user type integer [1. ADMIN or 2. USER]: ");
 		BufferedReader in1 = new BufferedReader(new InputStreamReader(System.in));
 
 		try {
 			String str = in1.readLine();
 			int typeUser = Integer.parseInt(str);
-			System.out.println(str);
 
 			if (typeUser == 1) {
-				System.out.println("hey we are in admin status");
+				System.out.println("You're in admin mode. You can now do the following: ");
+				System.out.println(adminOptionsText);
+				BufferedReader inAdminChoice = new BufferedReader(new InputStreamReader(System.in));
+				int adminChoice = Integer.parseInt(inAdminChoice.readLine());
+				
+				System.out.println("Great choice! " + adminChoice);
+				//okay now execute that command 
 			}
 
 			else if (typeUser == 2 ) {
 				System.out.println("hey we are in user status");
+				System.out.println(userOptionsText);
+				BufferedReader inUserChoice = new BufferedReader(new InputStreamReader(System.in));
+				int userChoice = Integer.parseInt(inUserChoice.readLine());
+
+				System.out.println("Great choice! " + userChoice);
+				//okay now execute that command
 			}
 
 			else {
