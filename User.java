@@ -101,10 +101,11 @@ public class User {
 			+ "2. Delete a specific instance \n "
 			+ "3. Return to Main Menu \n ";
 
-		String userOptionsText = " 1. Search for x \n "
-			+ "2. Search for y \n "
-			+ "3. Search for z \n "
-			+ "4. Return to Main Menu \n ";
+		String userOptionsText = "1. Find all people in the database \n"
+			+ "2. Find stories from requested person \n"
+			+ "3. Find stories from a specific country \n"
+			+ "4. Find stories from a range of years \n"
+			+ "5. Return to Main Menu \n ";
 
 		System.out.println("Input a user type integer [1. ADMIN or 2. USER]: ");
 		BufferedReader in1 = new BufferedReader(new InputStreamReader(System.in));
