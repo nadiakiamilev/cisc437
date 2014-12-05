@@ -22,11 +22,11 @@ To run code: java -classpath .:/usr/local/mysql-connector-java/mysql-connector-j
 
 You will be presented with the option to go into (1)Administration or (2)User mode.
 In Administraiton mode, you have the choice to:
-(1)update a story title
-(2)delete a person from the database
+1. update a story title
+2. delete a person from the database
 
 In User mode, you have the choice to:
-(1)Query for all persons in the database
-(2)Query stories by name
-(3)Find states from a country
-(4)Find stories based on a range of years
+1. Query for all persons in the database
+2. Query stories by name
+3. Find states from a country
+4. Find stories based on a range of years
