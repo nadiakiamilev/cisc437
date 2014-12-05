@@ -89,49 +89,55 @@ public class User {
 	}
 
 	/*******BHAVIN YOUR CODE GOES HERE!!***********/
-	public void userExecuteOperation(int option) {
-		System.out.println("We are going to execute this user query: " + option);
-
-		switch(option) {
-			case 1: 
-				//gets everyone from the database
-				System.out.println("option 1 selected");
-				String sqlQuery1 = "SELECT FROM * person";
-				try {
-					Statement st1 = cn.createStatement();
-					ResultSet persons = st1.executeQuery(sqlQuery1);
-					while (persons.next()) {
-						System.out.println(persons.toString());
+	public void userExecuteOperation(int option, String dbname, String userID, String password) {
+		try {
+			Class.forName("com.mysql.jdbc.Driver").newInstance();
+			cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/"+dbname, userID, password);
+			
+			switch(option) {
+				case 1: 
+					//gets everyone from the database
+					System.out.println("option 1 selected");
+					String sqlQuery1 = "SELECT FROM * person";
+					try {
+						Statement st1 = cn.createStatement();
+						ResultSet persons = st1.executeQuery(sqlQuery1);
+						while (persons.next()) {
+							System.out.println(persons.toString());
+						}
 					}
-				}
-				catch (SQLException e) {
-					System.out.println("Query failed: " + e);
-				}
-				//query 1
-				break;
-			case 2: 
-				System.out.println("option 2 selected");
-				String sqlQuery2 = "";
-				//query 2
-				break;
-			case 3: 
-				System.out.println("option 3 selected");
-				String sqlQuery3 = "";
-				//query 3
-				break;
-			case 4: 
-				System.out.println("option 4 selected");
-				String sqlQuery4 = "";
-				//query 4
-				break;
-			case 5: 
-				System.out.println("option 5 selected");
-				String sqlQuery5 = "";
-				//query 5
-				break;
-		}
-
+					catch (SQLException e) {
+						System.out.println("Query failed: " + e);
+					}
+					//query 1
+					break;
+				case 2: 
+					System.out.println("option 2 selected");
+					String sqlQuery2 = "";
+					//query 2
+					break;
+				case 3: 
+					System.out.println("option 3 selected");
+					String sqlQuery3 = "";
+					//query 3
+					break;
+				case 4: 
+					System.out.println("option 4 selected");
+					String sqlQuery4 = "";
+					//query 4
+					break;
+				case 5: 
+					System.out.println("option 5 selected");
+					String sqlQuery5 = "";
+					//query 5
+					break;
+			}
+		} 
+		catch (Exception e){
+			System.out.println("connection failed: " + e);
+		}	
 	}
+
 
 	public static void main(String[] args){
 		String dbname = "bgala";
@@ -179,7 +185,7 @@ public class User {
 				int userChoice = Integer.parseInt(inUserChoice.readLine()); //user's query choice
 				System.out.println("Great choice! " + userChoice);
 				User userTmp = new User(dbname, userID, password);
-				userTmp.userExecuteOperation(userChoice);
+				userTmp.userExecuteOperation(userChoice, dbname, userID, password);
 			}
 
 			else {
