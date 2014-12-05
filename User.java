@@ -53,6 +53,20 @@ public class User {
 					break;
 				case 2: //delete
 					System.out.println("here case 2");
+					BufferedReader instanceInformation = new BufferedReader(new InputStreamReader(System.in));
+					try {
+						System.out.println("show databases");
+						Statement st1 = cn.createStatement();
+						ResultSet rs1 = st1.executeQuery("show databases");
+						while (rs1.next())
+							{
+								System.out.println("Database: "+rs1.getString(1));
+							}
+							st1.close();
+					} 
+					catch (SQLException e) {
+						System.out.println("Query failed: " + e);
+					}
 					break;
 			}
 
@@ -61,7 +75,6 @@ public class User {
 			System.out.println("connection failed: " + e);
 		}
 	}
-
 
 	/*******BHAVIN YOUR CODE GOES HERE!!***********/
 	public void userExecuteOperation(int option) {
@@ -112,31 +125,22 @@ public class User {
 			String str = in1.readLine();
 			int typeUser = Integer.parseInt(str);
 
-
-
 			if (typeUser == 1) {
 				System.out.println("You're in admin mode. You can now do the following: ");
 				System.out.println(adminOptionsText);
 				BufferedReader inAdminChoice = new BufferedReader(new InputStreamReader(System.in));
 				int adminChoice = Integer.parseInt(inAdminChoice.readLine()); //admin update/delete choice
-				
 				System.out.println("Great choice! " + adminChoice);
-
 				User userTmp = new User(dbname, userID, password);
-
 				userTmp.adminExecuteOperation(adminChoice, dbname, userID, password);
-
 			}
 
 			else if (typeUser == 2 ) {
 				System.out.println("hey we are in user status");
 				System.out.println(userOptionsText);
 				BufferedReader inUserChoice = new BufferedReader(new InputStreamReader(System.in));
-				
 				int userChoice = Integer.parseInt(inUserChoice.readLine()); //user's query choice
-
 				System.out.println("Great choice! " + userChoice);
-
 				User userTmp = new User(dbname, userID, password);
 				userTmp.userExecuteOperation(userChoice);
 			}
