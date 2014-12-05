@@ -132,6 +132,21 @@ public class User {
 		System.out.println("hello world!");
 	}
 
+	public void adminExecuteOperation(int option) {
+		System.out.println("We are going to execute this operation: " );
+		switch(option) {
+			case 1:
+				System.out.println("ok here's case 1");
+			case 2:
+				System.out.println("here case 2");
+			case 3:
+				System.out.println("here is case 3");
+			case 4:
+				System.out.println("here is case 4");
+
+		}
+	}
+
 	// public void mainMenu() {
 	// 	System.out.println("MAIN MENU");
 	// }
@@ -170,7 +185,9 @@ public class User {
 
 				User app = new User(dbname, userID, password);
 				app.helloWorld();
+				app.adminExecuteOperation(adminChoice);
 				//okay now execute that command 
+				//okay, now execute the command on the choice that is passed through
 			}
 
 			else if (typeUser == 2 ) {
