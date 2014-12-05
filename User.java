@@ -127,12 +127,17 @@ public class User {
 			e.printStackTrace();
 		}
 	}
+	public void mainMenu() {
+		System.out.println("MAIN MENU");
+	}
 
 	public static void main(String[] args){
 		String dbname = "bgala";
 		String userID = "bgala";
 		String password = "4659";
 
+		mainMenu();
+		
 		System.out.println("Input a user type [ADMIN or USER]: ");
 		BufferedReader in1 = new BufferedReader(new InputStreamReader(System.in));
 
