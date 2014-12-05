@@ -16,29 +16,6 @@ public class User {
 		cn = null;
 		currentResults = null;
 		currentItem = null;
-
-		try {
-			Class.forName("com.mysql.jdbc.Driver").newInstance();
-			cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/"+dbname, userID, password);
-		}
-		catch (Exception e) {
-			System.out.println("connection failed: " + e);
-		}
-
-		try
-		{
-			System.out.println("show databases");
-			Statement st1 = cn.createStatement();
-			ResultSet rs1 = st1.executeQuery("show databases");
-			while (rs1.next())
-			{
-				System.out.println("Database: "+rs1.getString(1));
-			}
-			st1.close();
-		}
-		catch (SQLException e) {
-			System.out.println("Query failed: " + e);
-		}
 	}
 
 	public void helloWorld() {
