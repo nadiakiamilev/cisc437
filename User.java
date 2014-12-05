@@ -35,24 +35,23 @@ public class User {
 				case 1: //update
 					System.out.println("Please Enter the Story Title to Update: ");
 					BufferedReader storyOld = new BufferedReader(new InputStreamReader(System.in));
-					String storyVar = storyOld.readLine();
-					System.out.println(storyVar);
+					String storyOldTitle = storyOld.readLine();
+					System.out.println(storyOldTitle);
 
 					System.out.println("Please Enter the New Story Title: ");
 					BufferedReader storyNew = new BufferedReader(new InputStreamReader(System.in));
-					String storyVar2 = storyOld.readLine();
-					System.out.println(storyVar2);
+					String storyNewTitle = storyOld.readLine();
+					System.out.println(storyNewTitle);
 					
-					String sqlStatement = "INSERT INTO person" 
-						+ "(first_name, last_name, age, homecountry)"
-						+ "VALUES" + "('Gabi', 'Kraiter', 22, 'United States');";
+					String sqlStatement = "UPDATE story" 
+						+ "SET title=" + storyNewTitle
+						+ "WHERE" + "title=" + storyOldTitle;
 					
 					System.out.println(sqlStatement);
 					try {
-						System.out.println("Update instance");
-						System.out.println("We updated " + storyVar + " with the new story title " + storyVar2);
 						Statement st1 = cn.createStatement();
-						// st1.executeUpdate(sqlStatement); 
+						st1.executeUpdate(sqlStatement); 
+						System.out.println("We updated " + storyOldTitle + " with the new story title " + storyNewTitle);
 					}
 					catch (SQLException e) {
 						System.out.println("Query failed: " + e);
