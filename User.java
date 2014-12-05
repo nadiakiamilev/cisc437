@@ -43,9 +43,9 @@ public class User {
 					String storyNewTitle = storyOld.readLine();
 					System.out.println(storyNewTitle);
 					
-					String sqlStatement = "UPDATE story" 
+					String sqlStatement = "UPDATE story " 
 						+ "SET title=" + storyNewTitle
-						+ "WHERE" + "title=" + storyOldTitle;
+						+ " WHERE " + "title=" + storyOldTitle;
 					
 					System.out.println(sqlStatement);
 					try {
