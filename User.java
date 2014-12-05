@@ -53,7 +53,7 @@ public class User {
 					break;
 				case 2: //delete
 					System.out.println("here case 2");
-					BufferedReader instanceInformation = new BufferedReader(new InputStreamReader(System.in));
+					BufferedReader delInformation = new BufferedReader(new InputStreamReader(System.in));
 					try {
 						System.out.println("show databases");
 						Statement st1 = cn.createStatement();
