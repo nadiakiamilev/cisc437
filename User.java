@@ -69,23 +69,25 @@ public class User {
 		System.out.println("We are going to execute this user query: " + option);
 
 		switch(option) {
-			case 1:
+			case 1: option = 1;
+				System.out.println("option 1 selected");
 				//query 1
 				break;
-			case 2:
+			case 2: option = 2;
+				System.out.println("option 2 selected");
 				//query 2
 				break;
-			case 3:
+			case 3: option = 3;
+				System.out.println("option 3 selected");
 				//query 3
 				break;
-			case 4:
+			case 4: option = 4;
+				System.out.println("option 4 selected");
 				//query 4
 				break;
-			case 5:
+			case 5: option = 5;
+				System.out.println("option 5 selected");
 				//query 5
-				break;
-			case 6:
-				//query 6
 				break;
 		}
 
