@@ -2,6 +2,7 @@
 
 import java.io.*;
 import java.sql.*;
+import java.lang.*;
 
 
 public class User {
@@ -130,29 +131,31 @@ public class User {
 			e.printStackTrace();
 		}
 	}
-	public void mainMenu() {
-		System.out.println("MAIN MENU");
-	}
+
+	// public void mainMenu() {
+	// 	System.out.println("MAIN MENU");
+	// }
 
 	public static void main(String[] args){
 		String dbname = "bgala";
 		String userID = "bgala";
 		String password = "4659";
 
-		mainMenu();
+		// mainMenu();
 		
-		System.out.println("Input a user type [ADMIN or USER]: ");
+		System.out.println("Input a user type integer [1. ADMIN or 2. USER]: ");
 		BufferedReader in1 = new BufferedReader(new InputStreamReader(System.in));
 
 		try {
 			String str = in1.readLine();
+			int typeUser = Integer.parseInt(str);
 			System.out.println(str);
 
-			if (str == "ADMIN") {
+			if (typeUser == 1) {
 				System.out.println("hey we are in admin status");
 			}
 
-			else if (str == "USER" ) {
+			else if (typeUser == 2 ) {
 				System.out.println("hey we are in user status");
 			}
 
@@ -165,3 +168,5 @@ public class User {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 		}
+	}
+}
