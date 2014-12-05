@@ -7,15 +7,11 @@ import java.lang.*;
 
 public class User {
 	
-	//This is just a test//
-	
 	Connection cn;
-
 	ResultSet currentResults;
-
 	Integer currentItem;
-
 	String str;
+
 	public User(String dbname, String userID, String password) {
 		cn = null;
 		currentResults = null;
@@ -132,6 +128,10 @@ public class User {
 		}
 	}
 
+	public void helloWorld() {
+		System.out.println("hello world!");
+	}
+
 	// public void mainMenu() {
 	// 	System.out.println("MAIN MENU");
 	// }
@@ -158,6 +158,8 @@ public class User {
 			String str = in1.readLine();
 			int typeUser = Integer.parseInt(str);
 
+
+
 			if (typeUser == 1) {
 				System.out.println("You're in admin mode. You can now do the following: ");
 				System.out.println(adminOptionsText);
@@ -165,6 +167,9 @@ public class User {
 				int adminChoice = Integer.parseInt(inAdminChoice.readLine());
 				
 				System.out.println("Great choice! " + adminChoice);
+
+				User app = new User(dbname, userID, password);
+				app.helloWorld();
 				//okay now execute that command 
 			}
 
