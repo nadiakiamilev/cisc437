@@ -33,20 +33,26 @@ public class User {
 
 			switch(option) {
 				case 1: //update
-					System.out.println("ok here's case 1. You're need to type in info for instance we want to add!");
-					// BufferedReader instanceInformation = new BufferedReader(new InputStreamReader(System.in));
-					// String newInstance = instanceInformation.readLine();
-					// System.out.println(newInstance);
+					System.out.println("Please Enter the Story Title to Update: ");
+					BufferedReader storyOld = new BufferedReader(new InputStreamReader(System.in));
+					String storyVar = storyOld.readLine();
+					System.out.println(storyVar);
+
+					System.out.println("Please Enter the New Story Title: ");
+					BufferedReader storyNew = new BufferedReader(new InputStreamReader(System.in));
+					String storyVar2 = storyOld.readLine();
+					System.out.println(storyVar2);
 					
 					String sqlStatement = "INSERT INTO person" 
 						+ "(first_name, last_name, age, homecountry)"
 						+ "VALUES" + "('Gabi', 'Kraiter', 22, 'United States');";
+					
 					System.out.println(sqlStatement);
 					try {
 						System.out.println("Update instance");
+						System.out.println("We updated " + storyVar + " with the new story title " + storyVar2);
 						Statement st1 = cn.createStatement();
-						st1.executeUpdate(sqlStatement); 
-						System.out.println("We inserted gabi into the database.");
+						// st1.executeUpdate(sqlStatement); 
 					}
 					catch (SQLException e) {
 						System.out.println("Query failed: " + e);
@@ -55,6 +61,9 @@ public class User {
 					break;
 				case 2: //delete
 					System.out.println("here case 2");
+					break;
+				case 3: 
+					System.out.println("You opted to return to the main menu.");
 					break;
 			}
 
@@ -99,7 +108,7 @@ public class User {
 		String password = "4659";
 
 		// mainMenu();
-		String adminOptionsText = " 1. Insert a new instance \n " 
+		String adminOptionsText = " 1. Update a story title \n " 
 			+ "2. Delete a specific instance \n "
 			+ "3. Return to Main Menu \n ";
 
