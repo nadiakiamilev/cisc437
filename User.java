@@ -97,7 +97,7 @@ public class User {
 		+ "2. Find stories from requested person \n"
 		+ "3. Find stories from a specific country \n"
 		+ "4. Find stories from a range of years \n"
-		+ "5. Return to Main Menu \n ";
+		+ "5. Quit the program \n ";
 
 		while(!exit){
 			System.out.println("hey we are in user status");
@@ -131,7 +131,6 @@ public class User {
 						catch (SQLException e) {
 							System.out.println("Query user: get everyone failed: " + e);
 						}
-
 						break;
 					case 2: 
 						System.out.println("option 2 selected");
@@ -164,9 +163,12 @@ public class User {
 						break;
 					case 3: 
 						System.out.println("option 3 selected");
-						String sqlQuery3 = "";
+						System.out.print("Please enter the country you would like stories from:");
+						BufferedReader country_reader = new BufferedReader(new InputStreamReader(System.in));
+						String country = country_reader.readLine();
+						String sqlQuery3 = "SELECT title FROM story NATURAL JOIN story_location NATURAL JOIN location WHERE country = '" + country + "';";
 						try {
-							System.out.println(sqlQuery3);
+							//System.out.println(sqlQuery3);
 							Statement st3 = cn.createStatement();
 							ResultSet storiesCountry = st3.executeQuery(sqlQuery3);
 							while (storiesCountry.next()) {
@@ -174,34 +176,36 @@ public class User {
 							}
 						}
 						catch (SQLException e) {
-							System.out.println("Query failed: " + e);
+							System.out.println("Query user: story by country failed: " + e);
 						}
 
 						break;
 					case 4: 
 						System.out.println("option 4 selected");
 						
-						System.out.println("Please Enter the Lower Bound on the Year Range: ");
+						System.out.print("Please Enter the Lower Bound on the Year Range: ");
 						BufferedReader lowerBound = new BufferedReader(new InputStreamReader(System.in));
 						String lowerBoundStr = lowerBound.readLine();
 						System.out.println(lowerBoundStr);
 
-						System.out.println("Please Enter the Upper Bound on the Year Range: ");
+						System.out.print("Please Enter the Upper Bound on the Year Range: ");
 						BufferedReader upperBound = new BufferedReader(new InputStreamReader(System.in));
 						String upperBoundStr = upperBound.readLine();
 						System.out.println(upperBoundStr);
 
-						String sqlQuery4 = "";
+						String sqlQuery4 = "SELECT first_name, last_name, title, year FROM "
+						+ "person NATURAL JOIN person_story NATURAL JOIN (story NATURAL JOIN story_date NATURAL JOIN date) "
+						+ "WHERE year >= "+ "'" + lowerBoundStr + "'" + " AND year <= " + "'" + upperBoundStr + "';";
 						try {
 							System.out.println(sqlQuery4);
 							Statement st4 = cn.createStatement();
 							ResultSet storiesByYear = st4.executeQuery(sqlQuery4);
 							while (storiesByYear.next()) {
-								System.out.println(storiesByYear.getString(1));
+								System.out.println(storiesByYear.getString(1) + " | " + storiesByYear.getString(2) + " | " + storiesByYear.getString(3) + " | " + storiesByYear.getString(4));
 							}
 						}
 						catch (SQLException e) {
-							System.out.println("Query failed: " + e);
+							System.out.println("Query user: stories by years failed: " + e);
 						}
 
 						break;
