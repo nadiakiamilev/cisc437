@@ -34,39 +34,27 @@ public class User {
 			switch(option) {
 				case 1: //update
 					System.out.println("ok here's case 1. You're need to type in info for instance we want to add!");
-					BufferedReader instanceInformation = new BufferedReader(new InputStreamReader(System.in));
+					// BufferedReader instanceInformation = new BufferedReader(new InputStreamReader(System.in));
 					// String newInstance = instanceInformation.readLine();
 					// System.out.println(newInstance);
+					
+					String sqlStatement = "INSERT INTO person" 
+						+ "(first_name, last_name, age, homecountry)"
+						+ "VALUES" + "('Gabi', 'Kraiter', 22, 'United States');";
+					System.out.println(sqlStatement);
 					try {
-						System.out.println("show databases");
+						System.out.println("Update instance");
 						Statement st1 = cn.createStatement();
-						ResultSet rs1 = st1.executeQuery("show databases");
-						while (rs1.next())
-							{
-								System.out.println("Database: "+rs1.getString(1));
-							}
-							st1.close();
-					} 
+						st1.executeUpdate(sqlStatement); 
+						System.out.println("We inserted gabi into the database.");
+					}
 					catch (SQLException e) {
 						System.out.println("Query failed: " + e);
 					}
+
 					break;
 				case 2: //delete
 					System.out.println("here case 2");
-					BufferedReader delInformation = new BufferedReader(new InputStreamReader(System.in));
-					try {
-						System.out.println("show databases");
-						Statement st1 = cn.createStatement();
-						ResultSet rs1 = st1.executeQuery("show databases");
-						while (rs1.next())
-							{
-								System.out.println("Database: "+rs1.getString(1));
-							}
-							st1.close();
-					} 
-					catch (SQLException e) {
-						System.out.println("Query failed: " + e);
-					}
 					break;
 			}
 
