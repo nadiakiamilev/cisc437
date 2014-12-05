@@ -44,8 +44,8 @@ public class User {
 					System.out.println(storyNewTitle);
 					
 					String sqlStatement = "UPDATE story " 
-						+ "SET title=" + storyNewTitle
-						+ " WHERE " + "title=" + storyOldTitle;
+						+ "SET title=" + "'" + storyNewTitle + "'"
+						+ " WHERE " + "title=" + "'"+ storyOldTitle + "'";
 					
 					System.out.println(sqlStatement);
 					try {
