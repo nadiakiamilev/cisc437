@@ -98,39 +98,95 @@ public class User {
 				case 1: 
 					//gets everyone from the database
 					System.out.println("option 1 selected");
-					String sqlQuery1 = "SELECT FROM * person";
+					String sqlQuery1 = "SELECT first_name, last_name FROM person";
 					try {
+						System.out.println(sqlQuery1);
 						Statement st1 = cn.createStatement();
 						ResultSet persons = st1.executeQuery(sqlQuery1);
 						while (persons.next()) {
-							System.out.println(persons.toString());
+							System.out.println(persons.getString(1) + " " + persons.getString(2));
 						}
 					}
 					catch (SQLException e) {
 						System.out.println("Query failed: " + e);
 					}
-					//query 1
+
 					break;
 				case 2: 
 					System.out.println("option 2 selected");
 					String sqlQuery2 = "";
-					//query 2
+					try {
+						System.out.println(sqlQuery2);
+						Statement st2 = cn.createStatement();
+						ResultSet stories = st2.executeQuery(sqlQuery2);
+						while (stories.next()) {
+							System.out.println(stories.getString(1));
+						}
+					}
+					catch (SQLException e) {
+						System.out.println("Query failed: " + e);
+					}
+
 					break;
 				case 3: 
 					System.out.println("option 3 selected");
 					String sqlQuery3 = "";
-					//query 3
+					try {
+						System.out.println(sqlQuery3);
+						Statement st3 = cn.createStatement();
+						ResultSet storiesCountry = st3.executeQuery(sqlQuery3);
+						while (storiesCountry.next()) {
+							System.out.println(storiesCountry.getString(1));
+						}
+					}
+					catch (SQLException e) {
+						System.out.println("Query failed: " + e);
+					}
+
 					break;
 				case 4: 
 					System.out.println("option 4 selected");
+					
+					System.out.println("Please Enter the Lower Bound on the Year Range: ");
+					BufferedReader lowerBound = new BufferedReader(new InputStreamReader(System.in));
+					String lowerBoundStr = lowerBound.readLine();
+					System.out.println(lowerBoundStr);
+
+					System.out.println("Please Enter the Upper Bound on the Year Range: ");
+					BufferedReader upperBound = new BufferedReader(new InputStreamReader(System.in));
+					String upperBoundStr = upperBound.readLine();
+					System.out.println(upperBoundStr);
+
 					String sqlQuery4 = "";
-					//query 4
+					try {
+						System.out.println(sqlQuery4);
+						Statement st4 = cn.createStatement();
+						ResultSet storiesByYear = st4.executeQuery(sqlQuery4);
+						while (storiesByYear.next()) {
+							System.out.println(storiesByYear.getString(1));
+						}
+					}
+					catch (SQLException e) {
+						System.out.println("Query failed: " + e);
+					}
+
 					break;
-				case 5: 
-					System.out.println("option 5 selected");
-					String sqlQuery5 = "";
-					//query 5
-					break;
+				// case 5: 
+				// 	System.out.println("option 5 selected");
+				// 	String sqlQuery5 = "";
+				// 	try {
+				// 		System.out.println(sqlQuery5);
+				// 		Statement st5 = cn.createStatement();
+				// 		ResultSet storiesByYear = st5.executeQuery(sqlQuery4);
+				// 		while (storiesByYear.next()) {
+				// 			System.out.println(storiesByYear.getString(1));
+				// 		}
+				// 	}
+				// 	catch (SQLException e) {
+				// 		System.out.println("Query failed: " + e);
+				// 	}
+
+				// 	break;
 			}
 		} 
 		catch (Exception e){
