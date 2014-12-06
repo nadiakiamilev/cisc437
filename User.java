@@ -44,7 +44,7 @@ public class User {
 			+ "---------------------------------------------------------------- \n"
 			+ "(Enter in the cooresponding number to the query you wish to run) \n"
 			+ "---------------------------------------------------------------- \n"
-			+ "1. Update a story title \n " 
+			+ " 1. Update a story title \n " 
 			+ "2. Delete a specific person from the database \n "
 			+ "3. Add a new entity to the database \n "
 			+ "4. Quit program \n "

@@ -29,14 +29,17 @@ We've put together a collection of user stories from around the world. Enjoy :)
 
 There are two permissions for our database - user or administration. Based on the type of user you select yourself as, you will have access to a different set of commands for each mode. In the administration mode, your permissions are focused on being able to change records and delete records. In the user mode, your permissions are focused on performing queries on the dataset. There are no changes allowed to the database as a user. You can find details on the type of queries and actions available on the dataset below:
 
+The code is located in the '/usa/bgala/cisc437project' directory
+
 To compile code: /usr/local/java1.6/bin/javac User.java
 To run code: java -classpath .:/usr/local/mysql-connector-java/mysql-connector-java-5.1.18-bin.jar User
 
 You will be presented with the option to go into (1)Administration or (2)User mode.
 In Administraiton mode, you have the choice to:
-1. Update a story title with a new title.
-    
+1. Update a story title with a new title
 2. Delete a person from the database
+3. You can add an entirely new instance (story) to the database
+ - To create our person primary keys, we have an md5 hash function to generate a unique user id.
 3. Quit the program
 
 In User mode, you have the choice to:
