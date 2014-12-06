@@ -1,0 +1,26 @@
+Bhavin Gala & Nadia Kiamilev
+CISC437 Project
+
+Index Description
+
+For our database we had 2 indices that we used for our queries.
+
+The first index was a Hash index on the attributes first_name
+and last_name in the table person.  This index was important because
+the primary key on the table person was a person_id.  We ran equality 
+searches on this table many times in our queries, and Hash indices
+are fast on equality searches.  We had to make the storage engine 
+for the person table MEMORY.
+
+The SQL code was as follows:
+
+CREATE INDEX person_index ON person (first_name, last_name) HASH;
+
+The second index we need to have was a B-TREE index on the attribute
+year in the table date.  This index was important because we have
+a query that runs range queries on ths year attribute in date.  B-Trees
+are the best indices to handle range queries.
+
+The SQL code was as following:
+
+CREATE INDEX year_index ON date (year) BTREE;
