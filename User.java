@@ -110,17 +110,20 @@ public class User {
 
 	}
 
-	/*******BHAVIN YOUR CODE GOES HERE!!***********/
 	public void userExecuteOperation(String dbname, String userID, String password) {
 		int userChoice=0;
 		boolean exit = false;
 
 		String userOptionsText = " \n USER MENU: \n"
+		+ "---------------------------------------------------------------- \n"
+		+ "(Enter in the cooresponding number to the query you wish to run) \n"
+		+ "---------------------------------------------------------------- \n"
 		+ "1. Find all people in the database \n"
-		+ "2. Find stories from requested person \n"
+		+ "2. Find stories from a specific person \n"
 		+ "3. Find stories from a specific country \n"
-		+ "4. Find stories from a range of years \n"
-		+ "5. Quit the program \n ";
+		+ "4. Find stories from a range of years/ a single year \n"
+		+ "5. Find the story from the story title \n"
+		+ "6. Quit the program \n ";
 
 		while(!exit){
 			System.out.println(userOptionsText);
@@ -231,7 +234,27 @@ public class User {
 						}
 
 						break;
-					case 5: 
+					case 5:
+						System.out.println("option 5 selected");
+
+						System.out.print("Please Enter the Title of the Story you Want to Read: ");
+						BufferedReader story_reader = new BufferedReader(new InputStreamReader(System.in));
+						String story = story_reader.readLine();
+
+						String sqlQuery5 = "SELECT title, post_date, description FROM story WHERE title = '" + story + "'; ";
+						try {
+							Statement st5 = cn.createStatement();
+							ResultSet storiesByTitle = st5.executeQuery(sqlQuery5);
+							while (storiesByTitle.next()) {
+								System.out.println(storiesByTitle.getString(1) + " | " + storiesByTitle.getString(2));
+								System.out.println(storiesByTitle.getString(3));
+							}
+						}
+						catch (SQLException e) {
+							System.out.println("Query user: stories by title failed: " + e);
+						}
+						break;
+					case 6: 
 						System.out.println("Quitting Program.");
 						exit = true;
 						break;
