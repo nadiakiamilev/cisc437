@@ -103,12 +103,12 @@ public class User {
 						System.out.println("Let's add a new entity to our database!");
 
 						System.out.println("Youre First Name: ");
-						BufferedReader firstName = new BufferedReader(new InputStreamReader(System.in));
-						String first_Name = firstName.readLine();
+						BufferedReader firstNameAdd = new BufferedReader(new InputStreamReader(System.in));
+						String first_name_add = firstNameAdd.readLine();
 
 						System.out.println("Your Last Name: ");
-						BufferedReader lastName = new BufferedReader(new InputStreamReader(System.in));
-						String last_Name = lastName.readLine();
+						BufferedReader lastNameAdd = new BufferedReader(new InputStreamReader(System.in));
+						String last_name_add = lastNameAdd.readLine();
 
 						System.out.println("Please enter where you're coming from (ex. United States): ");
 						BufferedReader homeCountry = new BufferedReader(new InputStreamReader(System.in));
@@ -151,7 +151,7 @@ public class User {
 						try {
 							Statement st2 = cn.createStatement();
 							st2.executeUpdate(sqlInsertStatement);
-							System.out.println("You have successfully inserted your story! Thank you " + first_Name + " " + last_Name);
+							System.out.println("You have successfully inserted your story! Thank you " + first_name_add + " " + last_name_add);
 						}
 						catch (SQLException e){
 							System.out.println("Query failed: " + e);
