@@ -82,7 +82,6 @@ public class User {
 							+ "SET title=" + "'" + storyNewTitle + "'"
 							+ " WHERE " + "title=" + "'"+ storyOldTitle + "'";
 						
-						System.out.println(sqlStatement);
 						try {
 							Statement st1 = cn.createStatement();
 							st1.executeUpdate(sqlStatement); 
@@ -104,7 +103,7 @@ public class User {
 
 						String sqlDelStatement = "DELETE FROM person "
 							+ "WHERE " + "first_name=" + "'" + first_Name + "'"
-							+ " last_name=" + "'" + last_Name + "';";
+							+ "AND last_name=" + "'" + last_Name + "';";
 
 						try {
 							Statement st2 = cn.createStatement();
@@ -178,7 +177,14 @@ public class User {
 
 						try {
 							Statement st2 = cn.createStatement();
-							st2.executeUpdate(sqlInsertStatement);
+							st2.executeUpdate(sqlInsertStatement_Person);
+							st2.executeUpdate(sqlInsertStatement_Person_Story);
+							st2.executeUpdate(sqlInsertStatement_Story);
+							st2.executeUpdate(sqlInsertStatement_Story_Date);
+							st2.executeUpdate(sqlInsertStatement_Date);
+							st2.executeUpdate(sqlInsertStatement_Location);
+							st2.executeUpdate(sqlInsertStatement_Story_Date);
+							st2.executeUpdate(sqlInsertStatement_Story_Location);
 							System.out.println("You have successfully inserted your story! Thank you " + first_name_add + " " + last_name_add);
 						}
 						catch (SQLException e){
@@ -381,25 +387,14 @@ public class User {
 		String userID = "bgala";
 		String password = "4659";
 
-		// String sqlDelStatement = "DELETE FROM person "
-		// 	+ "WHERE " + "first_name=" + "'" + "first_Name" + "'"
-		// 	+ " last_name=" + "'" + "last_Name" + "'";
-
-		// System.out.println(sqlDelStatement);
-
-		// // mainMenu();
-		// String adminOptionsText = " 1. Update a story title \n " 
-		// 	+ "2. Delete a specific instance \n "
-		// 	+ "3. Return to Main Menu \n ";
-
-		// String userOptionsText = "1. Find all people in the database \n"
-		// 	+ "2. Find stories from requested person \n"
-		// 	+ "3. Find stories from a specific country \n"
-		// 	+ "4. Find stories from a range of years \n"
-		// 	+ "5. Return to Main Menu \n ";
-
-		System.out.println("Input a user type integer [1. ADMIN or 2. USER]: ");
+		System.out.println("");
+		System.out.println("||||||||||||||||||||||||||||||||||||||||||||||||");
+		System.out.println("");
+		System.out.println("WELCOME TO THE TRAVEL TALES DATABASE!");
+		System.out.println("");
+		System.out.print("Input a user type integer [1 == ADMIN or 2 == USER]: ");
 		BufferedReader in1 = new BufferedReader(new InputStreamReader(System.in));
+
 
 		try {
 			String str = in1.readLine();
@@ -417,14 +412,12 @@ public class User {
 			}
 
 			else {
-				System.out.print("hey, not the right type of user here. sorry.");
+				System.out.print("*Incorrect input, program will terminate*");
 			}
 
 				
 		} catch (IOException e) {
 			System.out.println("*Incorrect input, program will terminate*");
-				// TODO Auto-generated catch block
-				// e.printStackTrace();
 		}
 	}
 }
