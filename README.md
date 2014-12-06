@@ -1,9 +1,11 @@
 cisc437
+Nadia Kiamilev
+Bhavin Gala
 =======
 
 cisc437 db project. 
 
-for reference: 
+for source control reference: 
 
 1. GIT PULL
 2. CODE
@@ -32,13 +34,19 @@ To run code: java -classpath .:/usr/local/mysql-connector-java/mysql-connector-j
 
 You will be presented with the option to go into (1)Administration or (2)User mode.
 In Administraiton mode, you have the choice to:
-1. update a story title with a new title.
-2. delete a person from the database
+1. Update a story title with a new title.
+    
+2. Delete a person from the database
 3. Quit the program
 
 In User mode, you have the choice to:
 1. Query for all persons in the database
-2. Query stories by name
-3. Find states from a country
+2. Query stories by a specific person
+    - For instance, you can query by 'Bhavin Gala'
+3. Find stories from a country
+    - For instance, you can search by 'India'. 
 4. Find stories based on a range of years
-5. Quit the program
+    - For instance, you can search for stories from 2010-2013
+5. Find the story from the story title
+    - For instance, you can query by 'Paris Night'
+6. Quit Program
