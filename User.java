@@ -24,9 +24,15 @@ public class User {
 		int adminChoice=0;
 		boolean exit = false;
 
-		String adminOptionsText = " \n ADMIN MENU: \n " + "1. Update a story title \n " 
-			+ "2. Delete a specific instance \n "
-			+ "3. Quit program \n ";
+		String adminOptionsText = " \n ADMIN MENU: \n " 
+			+ "---------------------------------------------------------------- \n"
+			+ "(Enter in the cooresponding number to the query you wish to run) \n"
+			+ "---------------------------------------------------------------- \n"
+			+ "1. Update a story title \n " 
+			+ "2. Delete a specific person from the database \n "
+			+ "3. Add a new entity to the database \n "
+			+ "4. Quit program \n "
+			+ "---------------------------------------------------------------- \n";
 
 		while(!exit){			
 			System.out.println("You're in admin mode. You can now do the following: ");
@@ -37,8 +43,9 @@ public class User {
 				adminChoice = Integer.parseInt(inAdminChoice.readLine()); //admin update/delete choice
 				System.out.println("Great choice! " + adminChoice);
 			} 
-			catch (IOException e){
-				System.out.println("Failure to get admin choice");
+			catch (Exception e){
+				adminChoice=0;
+				System.out.println("!!! Please make sure to enter one of the options listed !!!");
 			}
 
 			try {
@@ -89,10 +96,68 @@ public class User {
 							System.out.println("You have successfully deleted " + first_Name + " " + last_Name + " from the database.");
 						}
 						catch (SQLException e) {
-							System.out.println("That person does not exist. Query failed: " + e );
+							System.out.println("That person does not exist in the database. Query failed: " + e );
 						}
 						break;
 					case 3: 
+						System.out.println("Let's add a new entity to our database!");
+
+						System.out.println("Youre First Name: ");
+						BufferedReader firstName = new BufferedReader(new InputStreamReader(System.in));
+						String first_Name = firstName.readLine();
+
+						System.out.println("Your Last Name: ");
+						BufferedReader lastName = new BufferedReader(new InputStreamReader(System.in));
+						String last_Name = lastName.readLine();
+
+						System.out.println("Please enter where you're coming from (ex. United States): ");
+						BufferedReader homeCountry = new BufferedReader(new InputStreamReader(System.in));
+						String home_Country = homeCountry.readLine();
+
+						System.out.println("Please enter your age: ");
+						BufferedReader age = new BufferedReader(new InputStreamReader(System.in));
+						String ageStr = age.readLine();
+						
+						System.out.println("Please enter what year your story happened in: ");
+						BufferedReader storyYear = new BufferedReader(new InputStreamReader(System.in));
+						String story_year = storyYear.readLine();
+
+						System.out.println("Please Enter what season your story took place in [fall, winter, spring, summer]: ");
+						BufferedReader storySeason = new BufferedReader(new InputStreamReader(System.in));
+						String story_season = storySeason.readLine();
+
+						System.out.println("Please Enter the country your story took place in");
+						BufferedReader country = new BufferedReader(new InputStreamReader(System.in));
+						String story_country = country.readLine();
+
+						System.out.println("Please Enter the city your story took place in: ");
+						BufferedReader storyCity = new BufferedReader(new InputStreamReader(System.in));
+						String story_city = storyCity.readLine();
+
+						System.out.println("Please Enter the title of the story you'll tell: ");
+						BufferedReader storyTitle = new BufferedReader(new InputStreamReader(System.in));
+						String story_title = storyTitle.readLine();
+
+						System.out.println("Please Enter the place description of where your story took place (i.e. restaurant): ");
+						BufferedReader storyPlace = new BufferedReader(new InputStreamReader(System.in));
+						String story_place = storyPlace.readLine();
+
+						System.out.println("Now tell us your story :) : ");
+						BufferedReader descr = new BufferedReader(new InputStreamReader(System.in));
+						String story_descr = descr.readLine();
+
+						String sqlInsertStatement = "";
+
+						try {
+							Statement st2 = cn.createStatement();
+							st2.executeUpdate(sqlInsertStatement);
+							System.out.println("You have successfully inserted your story! Thank you " + first_Name + " " + last_Name);
+						}
+						catch (SQLException e){
+							System.out.println("Query failed: " + e);
+						}
+						break;
+					case 4:
 						System.out.println("Quitting Program.");
 						exit = true;
 						break;
@@ -105,9 +170,6 @@ public class User {
 		}
 
 		}
-
-		
-
 	}
 
 	public void userExecuteOperation(String dbname, String userID, String password) {
