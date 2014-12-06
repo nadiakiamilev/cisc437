@@ -18,6 +18,22 @@ public class User {
 		currentItem = null;
 	}
 
+		public static String MD5_alt(String md5) {
+		try{
+			java.security.MessageDigest md = java.security.MessageDigest.getInstance("MD5");
+			byte[] array = md.digest(md5.getBytes());
+			StringBuffer sb = new StringBuffer();
+			for (int i = 0; i < array.length; ++i){
+				sb.append(Integer.toHexString((array[i] & 0xFF)|0x100).substring(1,3));
+			}
+			String f_return = sb.toString().substring(0, 10);
+			return f_return;
+		} catch (java.security.NoSuchAlgorithmException e){
+			System.out.println("no such algorithm, md5 failed");
+		}
+		return null;
+	}
+
 	// Method to execute administration operation
 	public void adminExecuteOperation(String dbname, String userID, String password) {
 
@@ -110,6 +126,8 @@ public class User {
 						BufferedReader lastNameAdd = new BufferedReader(new InputStreamReader(System.in));
 						String last_name_add = lastNameAdd.readLine();
 
+						String person_id = MD5_alt(first_name_add+" "+last_name_add);
+
 						System.out.println("Please enter where you're coming from (ex. United States): ");
 						BufferedReader homeCountry = new BufferedReader(new InputStreamReader(System.in));
 						String home_Country = homeCountry.readLine();
@@ -146,7 +164,17 @@ public class User {
 						BufferedReader descr = new BufferedReader(new InputStreamReader(System.in));
 						String story_descr = descr.readLine();
 
-						String sqlInsertStatement = "";
+						String story_id = MD5_alt(story_descr);
+
+						String sqlInsertStatement_Person = "INSERT INTO person (person_id,first_name,last_name,age,homecountry)"
+																																									+"VALUES ('"+person_id+"','"+first_name_add+"','"+last_name_add+"','"+ageStr+"','"+home_Country+"');";
+						String sqlInsertStatement_Person_Story = "INSERT INTO person_story (person_id,story_id) VALUES ('"+person_id+"','"+story_id+"');";
+						String sqlInsertStatement_Story = "INSERT INTO story (story_id,title,description,post_date) VALUES ('"+story_id+"','"+story_title+"','"+story_descr+"','2014-12-7');";
+						String sqlInsertStatement_Story_Date = "INSERT INTO story_date (story_id,season,year) VALUES ('"+story_id+"','"+story_season+"','"+story_year+"');";
+						String sqlInsertStatement_Date = "INSERT INTO date (season,year) VALUES ('"+story_season+"','"+story_year+"');";
+						String sqlInsertStatement_Travelled = "INSERT INTO travelled (person_id,city,country) VALUES ('"+person_id+"','"+story_city+"','"+story_country+"');";
+						String sqlInsertStatement_Location = "INSERT INTO location (place_description,city,country) VALUES ('"+story_place+"','"+story_city+"','"+story_country+"');";
+						String sqlInsertStatement_Story_Location = "INSERT INTO story_location (story_id,city,country) VALUES ('"+story_id+"','"+story_city+"','"+story_country+"');";
 
 						try {
 							Statement st2 = cn.createStatement();
