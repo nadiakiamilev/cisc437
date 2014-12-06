@@ -123,17 +123,18 @@ public class User {
 		+ "3. Find stories from a specific country \n"
 		+ "4. Find stories from a range of years/ a single year \n"
 		+ "5. Find the story from the story title \n"
-		+ "6. Quit the program \n ";
+		+ "6. Quit the program \n"
+		+ "---------------------------------------------------------------- \n";
 
 		while(!exit){
 			System.out.println(userOptionsText);
-			System.out.print("select your choice and press enter: ");
+			System.out.print("Select Your Choice and Press Enter: ");
 			BufferedReader inUserChoice = new BufferedReader(new InputStreamReader(System.in));
 			try{
 				userChoice = Integer.parseInt(inUserChoice.readLine()); //user's query choice
-				System.out.println("Great choice! " + userChoice);
-			} catch (IOException e){
-				System.out.println("failure to get user choice");
+				// System.out.println("Great choice! " + userChoice);
+			} catch (Exception e){
+				System.out.println("Please make sure to enter one of the options listed");
 			}
 
 			try {
@@ -143,12 +144,13 @@ public class User {
 				switch(userChoice) {
 					case 1: 
 						//gets everyone from the database
-						System.out.println("option 1 selected");
+						System.out.println("Option 1 Selected! \n");
 						String sqlQuery1 = "SELECT first_name, last_name FROM person";
 						try {
-							System.out.println(sqlQuery1);
 							Statement st1 = cn.createStatement();
 							ResultSet persons = st1.executeQuery(sqlQuery1);
+							System.out.println("Here is the list of people who have stories in the database:");
+							System.out.println("------------------------------------------------------------");
 							while (persons.next()) {
 								System.out.println(persons.getString(1) + " " + persons.getString(2));
 							}
@@ -158,22 +160,19 @@ public class User {
 						}
 						break;
 					case 2: 
-						System.out.println("option 2 selected");
-						System.out.println("Please Enter the First Name of the Person You Want to Search Stories By: ");
+						System.out.println("Option 2 Selected");
+						System.out.print("Please Enter the First Name of the Person You Want to Search Stories By:");
 						BufferedReader firstName = new BufferedReader(new InputStreamReader(System.in));
 						String first_Name = firstName.readLine();
-						System.out.println(first_Name);
 
-						System.out.println("Please Enter the Last Name of the Person You Want to Search Stories By: ");
+						System.out.print("Please Enter the Last Name of the Person You Want to Search Stories By:");
 						BufferedReader lastName = new BufferedReader(new InputStreamReader(System.in));
 						String last_Name = lastName.readLine();
-						System.out.println(last_Name);
 
 						String sqlQuery2 = "SELECT title, post_date, description FROM story NATURAL JOIN person_story NATURAL JOIN person WHERE first_name = " 
 							+ "'" + first_Name + "'" 
 							+ " AND last_name = " + "'" + last_Name + "';";
 						try {
-							System.out.println(sqlQuery2);
 							Statement st2 = cn.createStatement();
 							ResultSet stories = st2.executeQuery(sqlQuery2);
 							while (stories.next()) {
@@ -260,7 +259,8 @@ public class User {
 						break;
 
 					default:
-						System.out.println("incorrect option selected, sorry!");
+						System.out.println("\nIncorrect option selected, sorry!");
+						System.out.println("We will bring you back to the User menu.\n");
 				}
 			} 
 			catch (Exception e){
