@@ -142,10 +142,6 @@ public class User {
 				System.out.println("!!! Please make sure to enter one of the options listed !!!");
 			}
 
-			// try {
-				// Class.forName("com.mysql.jdbc.Driver").newInstance();
-				// cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/"+dbname, userID, password);
-				
 				switch(userChoice) {
 					case 1: 
 						//gets everyone from the database
@@ -225,18 +221,15 @@ public class User {
 						System.out.print("\nPlease Enter the Lower Bound on the Year Range: ");
 						BufferedReader lowerBound = new BufferedReader(new InputStreamReader(System.in));
 						String lowerBoundStr = lowerBound.readLine();
-						// System.out.println(lowerBoundStr);
 
 						System.out.print("Please Enter the Upper Bound on the Year Range: ");
 						BufferedReader upperBound = new BufferedReader(new InputStreamReader(System.in));
 						String upperBoundStr = upperBound.readLine();
-						// System.out.println(upperBoundStr);
 
 						String sqlQuery4 = "SELECT first_name, last_name, title, year FROM "
 						+ "person NATURAL JOIN person_story NATURAL JOIN (story NATURAL JOIN story_date NATURAL JOIN date) "
 						+ "WHERE year >= "+ "'" + lowerBoundStr + "'" + " AND year <= " + "'" + upperBoundStr + "';";
 						try {
-							// System.out.println(sqlQuery4);
 							Statement st4 = cn.createStatement();
 							ResultSet storiesByYear = st4.executeQuery(sqlQuery4);
 							System.out.print("\n{FIRST_NAME LAST_NAME} | {TITLE} | {YEAR}\n"
@@ -286,10 +279,6 @@ public class User {
 						System.out.println("\nIncorrect option selected, sorry!");
 						System.out.println("We will bring you back to the User menu.\n");
 				}
-			// } 
-			// catch (Exception e){
-				// System.out.println("connection failed: " + e);
-			// }	
 			}
 	}catch (Exception e) {
 		System.out.println("connection failed: " +e);
@@ -302,22 +291,22 @@ public class User {
 		String userID = "bgala";
 		String password = "4659";
 
-		String sqlDelStatement = "DELETE FROM person "
-			+ "WHERE " + "first_name=" + "'" + "first_Name" + "'"
-			+ " last_name=" + "'" + "last_Name" + "'";
+		// String sqlDelStatement = "DELETE FROM person "
+		// 	+ "WHERE " + "first_name=" + "'" + "first_Name" + "'"
+		// 	+ " last_name=" + "'" + "last_Name" + "'";
 
-		System.out.println(sqlDelStatement);
+		// System.out.println(sqlDelStatement);
 
-		// mainMenu();
-		String adminOptionsText = " 1. Update a story title \n " 
-			+ "2. Delete a specific instance \n "
-			+ "3. Return to Main Menu \n ";
+		// // mainMenu();
+		// String adminOptionsText = " 1. Update a story title \n " 
+		// 	+ "2. Delete a specific instance \n "
+		// 	+ "3. Return to Main Menu \n ";
 
-		String userOptionsText = "1. Find all people in the database \n"
-			+ "2. Find stories from requested person \n"
-			+ "3. Find stories from a specific country \n"
-			+ "4. Find stories from a range of years \n"
-			+ "5. Return to Main Menu \n ";
+		// String userOptionsText = "1. Find all people in the database \n"
+		// 	+ "2. Find stories from requested person \n"
+		// 	+ "3. Find stories from a specific country \n"
+		// 	+ "4. Find stories from a range of years \n"
+		// 	+ "5. Return to Main Menu \n ";
 
 		System.out.println("Input a user type integer [1. ADMIN or 2. USER]: ");
 		BufferedReader in1 = new BufferedReader(new InputStreamReader(System.in));
@@ -343,8 +332,9 @@ public class User {
 
 				
 		} catch (IOException e) {
+			System.out.println("*Incorrect input, program will terminate*");
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				// e.printStackTrace();
 		}
 	}
 }
